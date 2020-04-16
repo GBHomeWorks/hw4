@@ -51,6 +51,7 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
         log.setWrapStyleWord(true);
         log.setEditable(false);
         cbAlwaysOnTop.addActionListener(this);
+        btnSend.addActionListener(this);
 
         panelTop.add(tfIPAddress);
         panelTop.add(tfPort);
@@ -74,6 +75,11 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
         Object src = e.getSource();
         if (src == cbAlwaysOnTop) {
             setAlwaysOnTop(cbAlwaysOnTop.isSelected());
+        }
+        if (src == btnSend) {
+            log.append(tfMessage.getText() + " ");
+            tfMessage.setText("");
+//            tfMessage.setDocument(".....");        <---------- отсюда каждый раз можно дописывать в файл журнала
         } else {
             throw new RuntimeException("Unknown source:" + src);
         }
